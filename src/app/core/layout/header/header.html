@@ -1,0 +1,133 @@
+<header class="header">
+  <div class="header-container container">
+
+    <!-- Left Section: Hamburger on mobile, Logo on desktop -->
+    <div class="header-left">
+      <!-- Mobile Menu Button (Hamburger/Close) -->
+      <button
+        class="mobile-menu-toggle"
+        (click)="toggleMobileMenu()"
+        [attr.aria-expanded]="isMobileMenuOpen()"
+        aria-label="Toggle navigation menu"
+      >
+        <span class="material-symbols-outlined">
+          {{ isMobileMenuOpen() ? 'close' : 'menu' }}
+        </span>
+      </button>
+
+      <!-- Logo -->
+      <a routerLink="/" class="logo" (click)="closeMobileMenu()">
+        {{ t().header.logo }}
+      </a>
+    </div>
+
+    <!-- Center Section: Desktop Navigation -->
+    <nav class="desktop-nav" aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li>
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            {{ t().header.home }}
+          </a>
+        </li>
+        <li>
+          <a routerLink="/projects" routerLinkActive="active">
+            {{ t().header.projects }}
+          </a>
+        </li>
+        <li>
+          <a routerLink="/articles" routerLinkActive="active">
+            {{ t().header.articles }}
+          </a>
+        </li>
+        <li>
+          <a routerLink="/about" routerLinkActive="active">
+            {{ t().header.about }}
+          </a>
+        </li>
+        <!-- <li>
+          <a routerLink="/tools" routerLinkActive="active">
+            {{ t().header.tools }}
+          </a>
+        </li> -->
+      </ul>
+    </nav>
+
+    <!-- Right Section: Language Toggle Button -->
+    <div class="header-right">
+      <button
+        class="lang-toggle-btn"
+        (click)="toggleLanguage()"
+        [attr.aria-label]="t().header.ariaLabelLanguage"
+      >
+        <span class="material-symbols-outlined lang-icon">translate</span>
+        <span class="lang-text">{{ currentLang() === 'pt-BR' ? 'PT' : 'EN' }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Overlay / Backdrop -->
+  @if (isMobileMenuOpen()) {
+    <div class="mobile-drawer-backdrop" (click)="closeMobileMenu()"></div>
+  }
+
+  <!-- Mobile Navigation Drawer (Slides from Left) -->
+  <nav
+    class="mobile-drawer"
+    [class.open]="isMobileMenuOpen()"
+    aria-label="Mobile Navigation"
+  >
+    <ul class="mobile-nav-links">
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="closeMobileMenu()"
+        >
+          <span class="material-symbols-outlined">home</span>
+          {{ t().header.home }}
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="/projects"
+          routerLinkActive="active"
+          (click)="closeMobileMenu()"
+        >
+          <span class="material-symbols-outlined">code</span>
+          {{ t().header.projects }}
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="/articles"
+          routerLinkActive="active"
+          (click)="closeMobileMenu()"
+        >
+          <span class="material-symbols-outlined">article</span>
+          {{ t().header.articles }}
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="/about"
+          routerLinkActive="active"
+          (click)="closeMobileMenu()"
+        >
+          <span class="material-symbols-outlined">person</span>
+          {{ t().header.about }}
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="/tools"
+          routerLinkActive="active"
+          (click)="closeMobileMenu()"
+        >
+          <span class="material-symbols-outlined">construction</span>
+          {{ t().header.tools }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,178 @@
+<section class="about-page container">
+  <!-- 1. Hero / Resumo Profissional -->
+  <header class="page-header">
+    <h1 class="page-title">{{ t().about.title }}</h1>
+    <p class="page-subtitle">{{ t().about.subtitle }}</p>
+  </header>
+
+  <div class="intro-grid">
+    <div class="intro-main">
+      <h2 class="intro-heading">{{ t().about.introTitle }}</h2>
+      <p class="intro-text">{{ t().about.introText1 }}</p>
+      <p class="intro-text">{{ t().about.introText2 }}</p>
+      <p class="intro-text">{{ t().about.introText3 }}</p>
+    </div>
+  </div>
+
+  <!-- 2. Trajetória Profissional (Timeline) -->
+  <div class="about-section timeline-section">
+    <h2 class="section-title">{{ t().about.trajectoryHeading }}</h2>
+    <div class="timeline-container">
+      @for (job of timelineJobs(); track job.key) {
+        <div class="timeline-item" [class.highlighted-lead]="job.key === 'atlas'">
+          <div class="timeline-badge" aria-hidden="true"></div>
+
+          <div class="timeline-card">
+            <header class="job-header">
+              <div class="job-meta">
+                <span class="job-company">{{ job.company }}</span>
+                <span class="job-period">{{ job.period }}</span>
+              </div>
+              <h3 class="job-role">{{ job.role }}</h3>
+            </header>
+
+            <p class="job-desc">{{ job.desc }}</p>
+
+            <!-- Contribuições -->
+            <div class="job-contributions">
+              <h4 class="contributions-title">{{ t().about.contributionsLabel }}</h4>
+              <ul class="contributions-list">
+                @for (bullet of job.bullets; track bullet) {
+                  <li>{{ bullet }}</li>
+                }
+              </ul>
+            </div>
+
+            <!-- Subseções específicas (e.g. Crie seu Banco / Slingui no Atlas) -->
+            @if (job.subSections) {
+              <div class="job-subsections">
+                @for (sub of job.subSections; track sub.title) {
+                  <div class="job-sub-card">
+                    <h5 class="sub-title">
+                      <span class="material-symbols-outlined icon-sub">folder_open</span>
+                      {{ sub.title }}
+                    </h5>
+                    <ul class="contributions-list">
+                      @for (bullet of sub.bullets; track bullet) {
+                        <li>{{ bullet }}</li>
+                      }
+                    </ul>
+                  </div>
+                }
+              </div>
+            }
+
+            <!-- Tecnologias/Tags -->
+            @if (job.techs) {
+              <div class="job-techs">
+                <span class="techs-label">{{ t().about.techLabel }}</span>
+                <div class="techs-list">
+                  @for (tech of job.techs; track tech) {
+                    <span class="tech-tag">{{ tech }}</span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- 3. Como eu atuo (Cards de atuação) -->
+  <div class="about-section acts-section">
+    <h2 class="section-title">{{ t().about.howIActHeading }}</h2>
+    <div class="acts-grid">
+      <div class="act-card">
+        <span class="material-symbols-outlined act-icon">code</span>
+        <h3 class="act-title">{{ t().about.howIActItems.engineering.title }}</h3>
+        <p class="act-desc">{{ t().about.howIActItems.engineering.desc }}</p>
+      </div>
+      <div class="act-card">
+        <span class="material-symbols-outlined act-icon">account_tree</span>
+        <h3 class="act-title">{{ t().about.howIActItems.architecture.title }}</h3>
+        <p class="act-desc">{{ t().about.howIActItems.architecture.desc }}</p>
+      </div>
+      <div class="act-card">
+        <span class="material-symbols-outlined act-icon">groups</span>
+        <h3 class="act-title">{{ t().about.howIActItems.leadership.title }}</h3>
+        <p class="act-desc">{{ t().about.howIActItems.leadership.desc }}</p>
+      </div>
+      <div class="act-card">
+        <span class="material-symbols-outlined act-icon">cloud</span>
+        <h3 class="act-title">{{ t().about.howIActItems.cloud.title }}</h3>
+        <p class="act-desc">{{ t().about.howIActItems.cloud.desc }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Competências Técnicas (Skills por categorias) -->
+  <div class="about-section skills-section">
+    <h2 class="section-title">{{ t().about.skillsHeading }}</h2>
+    <div class="skills-grid">
+      @for (group of skillGroups(); track group.title) {
+        <div class="skills-card">
+          <h3 class="skills-card-title">{{ group.title }}</h3>
+          <div class="skills-chips">
+            @for (skill of group.skills; track skill) {
+              <span class="skill-chip">{{ skill }}</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- 5. Formação Acadêmica & Complementar -->
+  <div class="about-section education-section">
+    <h2 class="section-title">{{ t().about.educationHeading }}</h2>
+    <div class="education-grid">
+      <!-- Acadêmica -->
+      <div class="education-card">
+        <span class="material-symbols-outlined edu-icon">school</span>
+        <div class="edu-meta">
+          <span class="edu-period">{{ t().about.educationItem.period }}</span>
+          <span class="edu-status">{{ t().about.educationItem.status }}</span>
+        </div>
+        <h3 class="edu-institution">{{ t().about.educationItem.institution }}</h3>
+        <p class="edu-degree">{{ t().about.educationItem.degree }}</p>
+      </div>
+
+      <!-- Complementar -->
+      <div class="education-card text-block">
+        <span class="material-symbols-outlined edu-icon">military_tech</span>
+        <h3 class="edu-institution">{{ t().about.educationComplementaryTitle }}</h3>
+        <p class="edu-text-desc">{{ t().about.educationComplementaryDesc }}</p>
+        <p class="edu-text-desc sub-desc">{{ t().about.educationContinuousDesc }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Encerramento / Contato Footer -->
+  <footer class="about-footer-section">
+    <h2 class="footer-title">{{ t().about.footerHeading }}</h2>
+    <div class="footer-cta-group">
+      <a routerLink="/projects" class="about-cta-btn secondary">
+        <span class="material-symbols-outlined">code</span>
+        {{ t().about.footerCTAProjects }}
+      </a>
+      <a routerLink="/articles" class="about-cta-btn secondary">
+        <span class="material-symbols-outlined">article</span>
+        {{ t().about.footerCTAArticles }}
+      </a>
+      <a
+        href="https://linkedin.com/in/eloi-anzolin"
+        target="_blank"
+        rel="noopener"
+        class="about-cta-btn primary"
+      >
+        <svg class="cta-svg-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+          />
+        </svg>
+        LinkedIn
+      </a>
+    </div>
+  </footer>
+</section>

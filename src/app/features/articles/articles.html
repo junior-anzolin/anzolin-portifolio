@@ -1,0 +1,81 @@
+<section class="articles-page container">
+  <!-- Header de Título e Descrição -->
+  <header class="page-header">
+    <h1 class="page-title">{{ t().articles.title }}</h1>
+    <p class="page-subtitle">{{ t().articles.subtitle }}</p>
+  </header>
+
+  <!-- Lista de Artigos em Grid de Alta Performance -->
+  <div class="articles-grid">
+    @for (article of articles(); track article.url) {
+      <article class="article-card">
+        <!-- Imagem de Destaque ou Fallback Visual -->
+        <div class="article-image-wrapper">
+          @if (shouldShowFallback(article)) {
+            <div class="article-image-fallback" aria-hidden="true">
+              <span class="material-symbols-outlined fallback-icon">article</span>
+              <span class="brand-subtle">EAF.</span>
+            </div>
+          } @else {
+            <img
+              [src]="article.imageUrl"
+              [alt]="article.title"
+              class="article-image"
+              loading="lazy"
+              (error)="handleImageError(article.url)"
+            >
+          }
+        </div>
+
+        <!-- Conteúdo do Card -->
+        <div class="article-card-body">
+          <header class="card-header">
+            <!-- Tags / Categorias -->
+            <div class="article-categories">
+              @for (tag of article.categories; track tag) {
+                <span class="article-tag">{{ tag }}</span>
+              }
+            </div>
+
+            <!-- Título do Post -->
+            <h2 class="article-title">
+              <a [href]="article.url" target="_blank" rel="noopener">
+                {{ article.title }}
+              </a>
+            </h2>
+          </header>
+
+          <!-- Resumo/Excerpt -->
+          <p class="article-excerpt">
+            {{ article.excerpt }}
+          </p>
+
+          <!-- Footer do Card: Metadata e CTA -->
+          <footer class="article-card-footer">
+            <div class="article-meta">
+              <span class="meta-item">
+                <span class="material-symbols-outlined icon">calendar_month</span>
+                <span>{{ formatDate(article.pubDate) }}</span>
+              </span>
+              <span class="meta-item">
+                <span class="material-symbols-outlined icon">schedule</span>
+                <span>{{ article.readingTimeMin }} {{ t().articles.readTime }}</span>
+              </span>
+            </div>
+
+            <a
+              [href]="article.url"
+              target="_blank"
+              rel="noopener"
+              class="article-cta-link"
+              [attr.aria-label]="t().articles.readCTA + ': ' + article.title"
+            >
+              <span>{{ t().articles.readCTA }}</span>
+              <span class="material-symbols-outlined arrow">arrow_forward</span>
+            </a>
+          </footer>
+        </div>
+      </article>
+    }
+  </div>
+</section>

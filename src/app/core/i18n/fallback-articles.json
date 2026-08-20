@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Arquitetura de Micro-Frontends com Angular e Webpack Module Federation",
+    "url": "https://medium.com/@junior-anzolin/arquitetura-de-micro-frontends-com-angular-e-webpack-module-federation-example",
+    "pubDate": "2026-05-15T10:00:00.000Z",
+    "excerpt": "Explorando estratégias modernas para dividir grandes aplicações em módulos independentes escaláveis, otimizando builds e autonomia dos times.",
+    "imageUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop",
+    "categories": ["Angular", "Micro Frontends", "Architecture"],
+    "readingTimeMin": 8
+  },
+  {
+    "title": "Decisões Arquiteturais e Liderança Técnica em Times Ágeis de Alta Performance",
+    "url": "https://medium.com/@junior-anzolin/decisoes-arquiteturais-e-lideranca-tecnica-em-times-ageis-example",
+    "pubDate": "2026-03-22T14:30:00.000Z",
+    "excerpt": "Como alinhar a qualidade técnica aos objetivos de negócio guiando equipes, mentorando engenheiros e estruturando pipelines de entrega contínua.",
+    "imageUrl": "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600&auto=format&fit=crop",
+    "categories": ["Leadership", "Agile", "Software Engineering"],
+    "readingTimeMin": 6
+  },
+  {
+    "title": "Desmistificando o Prerender / SSG no Ecossistema Angular Moderno",
+    "url": "https://medium.com/@junior-anzolin/desmistificando-o-prerender-ssg-no-ecossistema-angular-moderno-example",
+    "pubDate": "2026-01-10T09:00:00.000Z",
+    "excerpt": "Entenda como a geração de páginas estáticas otimiza o SEO, acelera a primeira pintura útil e melhora drasticamente a experiência do usuário.",
+    "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop",
+    "categories": ["Angular", "SSG", "Performance"],
+    "readingTimeMin": 5
+  }
+]

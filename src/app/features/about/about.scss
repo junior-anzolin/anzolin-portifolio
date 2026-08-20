@@ -1,0 +1,705 @@
+.about-page {
+  padding-block: var(--spacing-xxl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+}
+
+.page-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-width: 700px;
+
+  .page-title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+  }
+
+  .page-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+}
+
+/* Intro Section */
+.intro-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  max-width: 760px;
+
+  .intro-heading {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .intro-text {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+  }
+}
+
+/* Generic Section Styles */
+.about-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  border-top: 1px solid rgba(38, 52, 73, 0.3);
+  padding-top: var(--spacing-xxl);
+
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+}
+
+/* Professional Positioning Section */
+.positioning-section {
+  .positioning-text {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    max-width: 800px;
+  }
+}
+
+/* Acts (How I act) Grid */
+.acts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.act-card {
+  background-color: rgba(23, 32, 51, 0.35);
+  border: 1px solid rgba(38, 52, 73, 0.4);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  transition: all var(--transition-normal);
+
+  .act-icon {
+    font-size: 2.25rem;
+    color: var(--accent-primary);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .act-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .act-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  &:hover {
+    background-color: var(--surface-card);
+    border-color: rgba(56, 189, 248, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+/* Trajectory / Timeline */
+.timeline-container {
+  position: relative;
+  border-left: 2px solid rgba(38, 52, 73, 0.4);
+  padding-left: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  margin-left: var(--spacing-sm);
+}
+
+.timeline-item {
+  position: relative;
+
+  .timeline-badge {
+    position: absolute;
+    left: calc(-1 * var(--spacing-xl) - 7px);
+    top: 24px;
+    width: 12px;
+    height: 12px;
+    border-radius: var(--radius-full);
+    background-color: var(--border-color);
+    border: 2px solid var(--bg-primary);
+    transition: all var(--transition-normal);
+  }
+
+  .timeline-card {
+    background-color: rgba(23, 32, 51, 0.25);
+    border: 1px solid rgba(38, 52, 73, 0.35);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    transition: all var(--transition-normal);
+  }
+
+  /* Specific Highlight for SaveCash Technical Lead */
+  &.highlighted-lead {
+    .timeline-badge {
+      background-color: var(--accent-primary);
+      box-shadow: 0 0 10px var(--accent-primary);
+    }
+
+    .timeline-card {
+      border-left: 3px solid var(--accent-primary);
+      background-color: rgba(23, 32, 51, 0.4);
+    }
+  }
+
+  &:hover {
+    .timeline-badge {
+      background-color: var(--accent-primary);
+      transform: scale(1.2);
+    }
+
+    .timeline-card {
+      background-color: rgba(23, 32, 51, 0.45);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+  }
+}
+
+.job-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .job-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .job-company {
+    font-family: var(--font-family-sans);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+  }
+
+  .job-period {
+    font-family: var(--font-family-mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .job-role {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+}
+
+.job-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.job-contributions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+
+  .contributions-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+  }
+
+  .contributions-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    li {
+      position: relative;
+      padding-left: var(--spacing-lg);
+      font-size: 0.975rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+
+      &::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: var(--accent-primary);
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+/* Sub-sections within timeline cards */
+.job-subsections {
+  margin-top: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding-left: var(--spacing-md);
+  border-left: 2px solid rgba(56, 189, 248, 0.15);
+
+  .contributions-list {
+    padding-left: calc(var(--spacing-md) * 2);
+  }
+}
+
+.job-sub-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+
+  .sub-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+
+    .icon-sub {
+      font-size: 1.15rem;
+      color: var(--accent-secondary);
+    }
+  }
+}
+
+.job-techs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-xs);
+
+  .techs-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+  }
+
+  .techs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .tech-tag {
+    font-family: var(--font-family-mono);
+    font-size: 0.725rem;
+    font-weight: 600;
+    color: var(--accent-secondary);
+    background-color: rgba(34, 211, 238, 0.06);
+    border: 1px solid rgba(34, 211, 238, 0.12);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+/* Evolution Steps Section */
+.evolution-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background-color: rgba(23, 32, 51, 0.15);
+  border: 1px solid rgba(38, 52, 73, 0.25);
+  border-radius: var(--radius-xl);
+}
+
+.evolution-step-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-grow: 1;
+  justify-content: center;
+
+  .step-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--surface-card);
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    min-width: 140px;
+    max-width: 180px;
+    flex-grow: 1;
+    gap: var(--spacing-xs);
+    box-shadow: var(--shadow-sm);
+
+    .step-icon {
+      font-size: 1.5rem;
+      color: var(--accent-primary);
+    }
+
+    .step-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+  }
+
+  .step-arrow {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    opacity: 0.5;
+  }
+}
+
+/* Technical Skills Section */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.skills-card {
+  background-color: rgba(23, 32, 51, 0.3);
+  border: 1px solid rgba(38, 52, 73, 0.35);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+
+  .skills-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    border-left: 2px solid var(--accent-primary);
+    padding-left: var(--spacing-sm);
+  }
+
+  .skills-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .skill-chip {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background-color: var(--surface-card);
+    border: 1px solid var(--border-color);
+    padding: 4px 10px;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+
+    &:hover {
+      border-color: var(--accent-primary);
+      color: var(--text-primary);
+    }
+  }
+}
+
+/* Education Section */
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.education-card {
+  background-color: rgba(23, 32, 51, 0.35);
+  border: 1px solid rgba(38, 52, 73, 0.4);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+
+  .edu-icon {
+    font-size: 2.25rem;
+    color: var(--accent-primary);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .edu-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-family-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .edu-institution {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .edu-degree {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+  }
+
+  /* Text block variant (Complementary) */
+  &.text-block {
+    .edu-icon {
+      color: var(--accent-secondary);
+    }
+
+    .edu-text-desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+
+      &.sub-desc {
+        border-top: 1px solid rgba(38, 52, 73, 0.2);
+        padding-top: var(--spacing-sm);
+        margin-top: var(--spacing-xs);
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+/* Footer Section */
+.about-footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-lg);
+  border-top: 1px solid rgba(38, 52, 73, 0.3);
+  padding-top: var(--spacing-xxl);
+  margin-top: var(--spacing-lg);
+
+  .footer-title {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    max-width: 500px;
+    line-height: 1.3;
+  }
+
+  .footer-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+  }
+
+  .about-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 10px 22px;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all var(--transition-normal);
+
+    span {
+      font-size: 1.25rem;
+    }
+
+    &.primary {
+      background-color: var(--accent-primary);
+      color: var(--bg-primary);
+
+      &:hover,
+      &:focus-visible {
+        background-color: var(--accent-secondary);
+        transform: translateY(-1px);
+      }
+    }
+
+    &.secondary {
+      background-color: var(--surface-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+
+      &:hover,
+      &:focus-visible {
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+        transform: translateY(-1px);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent-primary);
+      outline-offset: 2px;
+    }
+
+    .cta-svg-icon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+/* Responsividade Adaptada */
+@media (max-width: 768px) {
+  .about-page {
+    padding-block: var(--spacing-xl);
+    gap: var(--spacing-xl);
+  }
+
+  .page-header {
+    .page-title {
+      font-size: 2.25rem;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  .intro-grid {
+    .intro-heading {
+      font-size: 1.5rem;
+    }
+
+    .intro-text {
+      font-size: 1rem;
+    }
+  }
+
+  .about-section {
+    padding-top: var(--spacing-xl);
+    gap: var(--spacing-md);
+
+    .section-title {
+      font-size: 1.25rem;
+    }
+  }
+
+  .positioning-section {
+    .positioning-text {
+      font-size: 1.1rem;
+    }
+  }
+
+  /* Timeline mobile compression */
+  .timeline-container {
+    padding-left: var(--spacing-lg);
+    gap: var(--spacing-lg);
+  }
+
+  .timeline-item {
+    .timeline-badge {
+      left: calc(-1 * var(--spacing-lg) - 7px);
+    }
+
+    .timeline-card {
+      padding: var(--spacing-md);
+    }
+  }
+
+  .job-header {
+    .job-role {
+      font-size: 1.2rem;
+    }
+
+    .job-company {
+      font-size: 1.1rem;
+    }
+  }
+
+  /* Evolution Steps mobile stack */
+  .evolution-steps {
+    flex-direction: column;
+    padding: var(--spacing-md);
+  }
+
+  .evolution-step-item {
+    width: 100%;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+
+    .step-card {
+      width: 100%;
+      max-width: none;
+      padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .step-arrow {
+      transform: rotate(90deg);
+      /* Arrow points down on mobile */
+      margin-block: var(--spacing-xs);
+    }
+  }
+
+  .skills-grid,
+  .education-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .education-card {
+    padding: var(--spacing-md);
+  }
+
+  .about-footer-section {
+    padding-top: var(--spacing-xl);
+
+    .footer-title {
+      font-size: 1.35rem;
+    }
+
+    .footer-cta-group {
+      width: 100%;
+      flex-direction: column;
+
+      .about-cta-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+/* Reduced Motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+  .act-card,
+  .timeline-item,
+  .skill-chip,
+  .about-cta-btn {
+    transition: none !important;
+
+    &:hover {
+      transform: none !important;
+    }
+  }
+
+  .timeline-badge {
+    transition: none !important;
+  }
+}
