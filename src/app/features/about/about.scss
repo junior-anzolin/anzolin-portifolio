@@ -442,10 +442,27 @@
   flex-direction: column;
   gap: var(--spacing-sm);
 
-  .edu-icon {
-    font-size: 2.25rem;
-    color: var(--accent-primary);
-    margin-bottom: var(--spacing-xs);
+  .edu-header {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    .edu-icon {
+      font-size: 2.25rem;
+      color: var(--accent-primary);
+      margin-bottom: var(--spacing-xs);
+      margin-right: var(--spacing-sm);
+    }
+
+    .edu-institution {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
   }
 
   .edu-meta {
@@ -454,13 +471,6 @@
     font-family: var(--font-family-mono);
     font-size: 0.85rem;
     color: var(--text-secondary);
-  }
-
-  .edu-institution {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: -0.02em;
   }
 
   .edu-degree {
@@ -701,5 +711,33 @@
 
   .timeline-badge {
     transition: none !important;
+  }
+}
+
+.edu-university {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  height: 100%;
+  flex-wrap: nowrap;
+  flex-direction: row;
+
+
+  .edu-info {
+    width: 100%;
+  }
+}
+
+.unipar-icon {
+  background-color: #e20613 !important;
+  padding: 8px;
+  max-width: calc(36px + 16px);
+  max-height: calc(36px + 16px);
+  border-radius: 16px;
+  margin-right: var(--spacing-md);
+
+  img {
+    width: 36px !important;
+    height: 36px !important;
   }
 }

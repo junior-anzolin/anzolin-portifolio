@@ -125,23 +125,33 @@
 
   <!-- 5. Formação Acadêmica & Complementar -->
   <div class="about-section education-section">
-    <h2 class="section-title">{{ t().about.educationHeading }}</h2>
     <div class="education-grid">
       <!-- Acadêmica -->
       <div class="education-card">
-        <span class="material-symbols-outlined edu-icon">school</span>
-        <div class="edu-meta">
-          <span class="edu-period">{{ t().about.educationItem.period }}</span>
-          <span class="edu-status">{{ t().about.educationItem.status }}</span>
-        </div>
-        <h3 class="edu-institution">{{ t().about.educationItem.institution }}</h3>
-        <p class="edu-degree">{{ t().about.educationItem.degree }}</p>
+        <section class="edu-header">
+          <span class="material-symbols-outlined edu-icon">school</span>
+          <h3 class="edu-institution">{{ t().about.educationHeading }}</h3>
+        </section>
+        <section class="edu-university">
+          <div class="unipar-icon">
+            <img src="unipar.svg" />
+          </div>
+          <span class="edu-info">
+            <div class="edu-meta">
+              <span class="edu-period">{{ t().about.educationItem.period }}</span>
+            </div>
+            <h3 class="edu-institution">{{ t().about.educationItem.institution }}</h3>
+            <p class="edu-degree">{{ t().about.educationItem.degree }}</p>
+          </span>
+        </section>
       </div>
 
       <!-- Complementar -->
       <div class="education-card text-block">
-        <span class="material-symbols-outlined edu-icon">military_tech</span>
-        <h3 class="edu-institution">{{ t().about.educationComplementaryTitle }}</h3>
+        <section class="edu-header">
+          <span class="material-symbols-outlined edu-icon">military_tech</span>
+          <h3 class="edu-institution">{{ t().about.educationComplementaryTitle }}</h3>
+        </section>
         <p class="edu-text-desc">{{ t().about.educationComplementaryDesc }}</p>
         <p class="edu-text-desc sub-desc">{{ t().about.educationContinuousDesc }}</p>
       </div>

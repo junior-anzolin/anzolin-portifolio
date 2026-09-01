@@ -8,7 +8,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:anzolin-portfolio": "node dist/anzolin-portfolio/server/server.mjs"
+    "serve:ssr:anzolin-portfolio": "node dist/anzolin-portfolio/server/server.mjs",
+    "deploy": "npm run build && echo '📦 Enviando arquivos para o S3...' && aws s3 sync ./dist/anzolin-portfolio/browser s3://anzolin.dev.br-424999961344-us-east-2-an --delete --profile=jr-prod && echo '☁️ Invalidando cache do CloudFront...' && aws cloudfront create-invalidation --distribution-id EDI2RYOVGN5PD --paths \"/*\" --profile=jr-prod > /dev/null && echo '✅ Deploy concluído com sucesso.'"
   },
   "private": true,
   "packageManager": "pnpm@10.26.2",

@@ -10,7 +10,8 @@ export const PT_BR = {
     ariaLabelGitHub: 'Visitar perfil do GitHub',
   },
   footer: {
-    description: 'Tech Lead e Engenheiro de Software Sênior Full Stack focado na construção de produtos escaláveis e de alta qualidade.',
+    description:
+      'Tech Lead e Engenheiro de Software Sênior Full Stack focado na construção de produtos escaláveis e de alta qualidade.',
     allRightsReserved: 'Todos os direitos reservados.',
     contact: 'Contato',
     navigation: 'Navegação',
@@ -367,10 +368,9 @@ export const PT_BR = {
 
     educationHeading: 'Formação Acadêmica',
     educationItem: {
-      institution: 'Centro Universitário FAG',
-      degree: 'Sistemas de Informação',
-      period: '2017 – 2018',
-      status: 'Curso interrompido',
+      institution: 'Unipar - Universidade Paranaense',
+      degree: 'Engenharia de Software',
+      period: 'Agosto/2026 – Presente',
     },
     educationComplementaryTitle: 'Formação Complementar',
     educationComplementaryDesc:
@@ -406,7 +406,8 @@ export const EN_US: typeof PT_BR = {
     ariaLabelGitHub: 'Visit GitHub profile',
   },
   footer: {
-    description: 'Tech Lead and Senior Full Stack Software Engineer focused on building scalable, high-quality products.',
+    description:
+      'Tech Lead and Senior Full Stack Software Engineer focused on building scalable, high-quality products.',
     allRightsReserved: 'All rights reserved.',
     contact: 'Contact',
     navigation: 'Navigation',
@@ -769,10 +770,9 @@ export const EN_US: typeof PT_BR = {
 
     educationHeading: 'Education',
     educationItem: {
-      institution: 'FAG University Center',
-      degree: 'Information Systems',
-      period: '2017 – 2018',
-      status: 'Interrupted',
+      institution: 'Unipar - Universidade Paranaense',
+      degree: 'Software Engineering',
+      period: 'August 2026 – Present',
     },
     educationComplementaryTitle: 'Complementary Training',
     educationComplementaryDesc:
