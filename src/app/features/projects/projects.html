@@ -13,7 +13,7 @@
     </h2>
     <div class="projects-grid professional-grid">
       @for (project of professionalCases(); track project.name) {
-        <div class="project-card professional-card">
+        <div class="project-card professional-card" (click)="onProjectClick(project.id)">
           <div class="card-header">
             <span class="material-symbols-outlined project-icon">{{ project.icon }}</span>
             <span class="project-category">{{ project.domain }}</span>
@@ -29,6 +29,7 @@
               rel="noopener"
               class="project-cta-link"
               [attr.aria-label]="(project.ctaText || t().projects.visitCTA) + ' ' + project.name"
+              (click)="onCtaClick(project.id, 'demo', $event)"
             >
               <span>{{ project.ctaText || t().projects.visitCTA }}</span>
               <span class="material-symbols-outlined arrow">arrow_forward</span>
@@ -47,7 +48,7 @@
     </h2>
     <div class="projects-grid personal-grid">
       @for (project of personalCases(); track project.name) {
-        <div class="project-card personal-card">
+        <div class="project-card personal-card" (click)="onProjectClick(project.id)">
           <div class="card-header">
             <span class="material-symbols-outlined project-icon">{{ project.icon }}</span>
             <span class="project-category">{{ project.domain }}</span>
@@ -63,6 +64,7 @@
               rel="noopener"
               class="project-cta-link"
               [attr.aria-label]="t().projects.githubCTA + ' ' + project.name"
+              (click)="onCtaClick(project.id, 'github', $event)"
             >
               <span>{{ t().projects.githubCTA }}</span>
               <span class="material-symbols-outlined arrow">arrow_forward</span>
