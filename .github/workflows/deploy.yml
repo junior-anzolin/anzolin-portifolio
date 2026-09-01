@@ -1,0 +1,98 @@
+name: Deploy Portfolio
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+  AWS_REGION: us-east-2
+  S3_BUCKET: anzolin.dev.br-424999961344-us-east-2-an
+  CLOUDFRONT_DISTRIBUTION_ID: EDI2RYOVGN5PD
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: portfolio-build
+          path: dist/anzolin-portfolio/browser
+          if-no-files-found: error
+          retention-days: 7
+
+
+  deploy-s3:
+    name: Deploy to S3
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: portfolio-build
+          path: dist/anzolin-portfolio/browser
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: arn:aws:iam::424999961344:role/Github-Actions-jr-portifolio
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Deploy to S3
+        run: |
+          aws s3 sync \
+            ./dist/anzolin-portfolio/browser \
+            s3://${{ env.S3_BUCKET }} \
+            --delete \
+            --only-show-errors
+
+
+  invalidate-cloudfront:
+    name: Invalidate CloudFront
+    needs: deploy-s3
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: arn:aws:iam::424999961344:role/Github-Actions-jr-portifolio
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
+
+      - name: Done
+        run: echo "🚀 Deploy concluído com sucesso!"
