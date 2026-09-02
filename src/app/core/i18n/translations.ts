@@ -176,6 +176,7 @@ Se encontrou algum bug, abre uma issue. 🐛
       },
     },
 
+    onThisPage: 'Nesta página',
     trajectoryHeading: 'Trajetória Profissional',
     contributionsLabel: 'Principais contribuições:',
     techLabel: 'Foco técnico & conceitos:',
@@ -614,6 +615,7 @@ If you found a bug, open an issue. 🐛
       },
     },
 
+    onThisPage: 'On this page',
     trajectoryHeading: 'Professional Journey',
     contributionsLabel: 'Key contributions:',
     techLabel: 'Technical focus & concepts:',

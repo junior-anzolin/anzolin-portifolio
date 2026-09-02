@@ -1,0 +1,123 @@
+:host {
+  display: block;
+}
+
+// Oculto por padrão (mobile / tablet)
+.toc-navigation {
+  display: none;
+}
+
+// Visível apenas no desktop
+@media (min-width: 1025px) {
+  .toc-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    width: 100%;
+    padding-left: var(--spacing-md);
+    border-left: 1px solid rgba(38, 52, 73, 0.3);
+    user-select: none;
+  }
+
+  .toc-title-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    opacity: 0.8;
+  }
+
+  .toc-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .toc-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding-block: 4px;
+    transition: color var(--transition-fast);
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--text-primary);
+    }
+
+    &:focus-visible {
+      color: var(--accent-primary);
+      outline: 2px solid var(--accent-primary);
+      outline-offset: 4px;
+      border-radius: var(--radius-sm);
+    }
+
+    &.active-link {
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+  }
+
+  .toc-sublist {
+    list-style: none;
+    padding-left: var(--spacing-sm);
+    margin: 0;
+    border-left: 1px solid rgba(38, 52, 73, 0.2);
+    margin-left: 4px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, margin 0.3s ease;
+
+    &.expanded {
+      max-height: 250px;
+      opacity: 1;
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+  }
+
+  .toc-subitem {
+    display: flex;
+  }
+
+  .toc-sublink {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    opacity: 0.85;
+    text-decoration: none;
+    padding-block: 3px;
+    transition: all var(--transition-fast);
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--text-primary);
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      color: var(--accent-primary);
+      outline: 2px solid var(--accent-primary);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+
+    &.active-link {
+      color: var(--accent-primary);
+      font-weight: 600;
+      opacity: 1;
+    }
+  }
+}

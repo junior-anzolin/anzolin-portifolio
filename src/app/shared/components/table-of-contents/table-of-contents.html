@@ -1,0 +1,30 @@
+<nav class="toc-navigation" [attr.aria-label]="displayTitle">
+  <span class="toc-title-text">{{ displayTitle }}</span>
+  <ul class="toc-list">
+    @for (item of tocItems(); track item.id) {
+      <li class="toc-item" [class.active-parent]="activeParentId() === item.id">
+        <a [href]="'#' + item.id" 
+           (click)="navigateToSection($event, item.id)"
+           class="toc-link"
+           [class.active-link]="activeId() === item.id">
+          {{ item.title }}
+        </a>
+        
+        @if (item.children && item.children.length > 0) {
+          <ul class="toc-sublist" [class.expanded]="activeParentId() === item.id">
+            @for (subItem of item.children; track subItem.id) {
+              <li class="toc-subitem">
+                <a [href]="'#' + subItem.id" 
+                   (click)="navigateToSection($event, subItem.id)"
+                   class="toc-sublink"
+                   [class.active-link]="activeId() === subItem.id">
+                  {{ subItem.title }}
+                </a>
+              </li>
+            }
+          </ul>
+        }
+      </li>
+    }
+  </ul>
+</nav>

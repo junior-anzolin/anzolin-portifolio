@@ -1,11 +1,12 @@
-<section class="about-page container">
-  <!-- 1. Hero / Resumo Profissional -->
-  <header class="page-header">
+<div class="about-layout container">
+  <section class="about-page" id="about-content">
+    <!-- 1. Hero / Resumo Profissional -->
+    <header class="page-header">
     <h1 class="page-title">{{ t().about.title }}</h1>
     <p class="page-subtitle">{{ t().about.subtitle }}</p>
   </header>
 
-  <div class="intro-grid">
+  <div class="intro-grid" id="resumo" data-toc-item [attr.data-toc-title]="t().about.introTitle">
     <div class="intro-main">
       <h2 class="intro-heading">{{ t().about.introTitle }}</h2>
       <p class="intro-text">{{ t().about.introText1 }}</p>
@@ -16,11 +17,16 @@
   </div>
 
   <!-- 2. Trajetória Profissional (Timeline) -->
-  <div class="about-section timeline-section">
+  <div class="about-section timeline-section" id="trajetoria" data-toc-item [attr.data-toc-title]="t().about.trajectoryHeading">
     <h2 class="section-title">{{ t().about.trajectoryHeading }}</h2>
     <div class="timeline-container">
       @for (job of timelineJobs(); track job.key) {
-        <div class="timeline-item" [class.highlighted-lead]="job.key === 'atlas'">
+        <div class="timeline-item" 
+             [id]="'job-' + job.key"
+             [class.highlighted-lead]="job.key === 'atlas'"
+             [attr.data-toc-item]="job.key !== 'savecashSenior' ? 'trajetoria' : null"
+             [attr.data-toc-title]="job.key !== 'savecashSenior' ? job.company : null"
+             [attr.data-toc-associate]="job.key === 'savecashSenior' ? 'job-savecashLead' : null">
           <div class="timeline-badge" aria-hidden="true"></div>
 
           <div class="timeline-card">
@@ -81,7 +87,7 @@
   </div>
 
   <!-- 3. Como eu atuo (Cards de atuação) -->
-  <div class="about-section acts-section">
+  <div class="about-section acts-section" id="atuacao" data-toc-item [attr.data-toc-title]="t().about.howIActHeading">
     <h2 class="section-title">{{ t().about.howIActHeading }}</h2>
     <div class="acts-grid">
       <div class="act-card">
@@ -108,7 +114,7 @@
   </div>
 
   <!-- 4. Competências Técnicas (Skills por categorias) -->
-  <div class="about-section skills-section">
+  <div class="about-section skills-section" id="competencias" data-toc-item [attr.data-toc-title]="t().about.skillsHeading">
     <h2 class="section-title">{{ t().about.skillsHeading }}</h2>
     <div class="skills-grid">
       @for (group of skillGroups(); track group.title) {
@@ -125,7 +131,7 @@
   </div>
 
   <!-- 5. Formação Acadêmica & Complementar -->
-  <div class="about-section education-section">
+  <div class="about-section education-section" id="formacao" data-toc-item [attr.data-toc-title]="t().about.educationHeading">
     <div class="education-grid">
       <!-- Acadêmica -->
       <div class="education-card">
@@ -186,4 +192,9 @@
       </a>
     </div>
   </footer>
-</section>
+  </section>
+
+  <aside class="about-sidebar">
+    <app-table-of-contents contentContainerSelector="#about-content"></app-table-of-contents>
+  </aside>
+</div>

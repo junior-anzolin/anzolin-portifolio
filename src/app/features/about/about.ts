@@ -2,6 +2,7 @@ import { Component, computed, inject, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../core/services/language.service';
+import { TableOfContentsComponent } from '../../shared/components/table-of-contents/table-of-contents';
 
 interface TimelineJob {
   company: string;
@@ -17,7 +18,7 @@ interface TimelineJob {
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TableOfContentsComponent],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
