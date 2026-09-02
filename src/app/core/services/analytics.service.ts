@@ -1,4 +1,4 @@
-import { Injectable, PLATFORM_ID, inject } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject, isDevMode } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -87,24 +87,30 @@ export class AnalyticsService {
     };
 
     const umami = window.umami;
-    console.log(`[Analytics] Enviando evento ao Umami: "${eventName}"`, {
-      payload,
-      umamiExists: !!umami
-    });
+    if (isDevMode()) {
+      console.log(`[Analytics] Enviando evento ao Umami: "${eventName}"`, {
+        payload,
+        umamiExists: !!umami
+      });
+    }
 
     if (umami) {
       umami.track(eventName, payload);
     } else {
-      console.warn(`[Analytics] window.umami não encontrado para o evento "${eventName}". Tentando agendar envio...`);
+      if (isDevMode()) {
+        console.warn(`[Analytics] window.umami não encontrado para o evento "${eventName}". Tentando agendar envio...`);
+      }
       // Fallback: wait and try again once
       setTimeout(() => {
         const delayedUmami = window.umami;
-        console.log(`[Analytics] Tentativa tardia de envio para "${eventName}"`, {
-          umamiExists: !!delayedUmami
-        });
+        if (isDevMode()) {
+          console.log(`[Analytics] Tentativa tardia de envio para "${eventName}"`, {
+            umamiExists: !!delayedUmami
+          });
+        }
         if (delayedUmami) {
           delayedUmami.track(eventName, payload);
-        } else {
+        } else if (isDevMode()) {
           console.error(`[Analytics] Falha crítica: window.umami não disponível após 1s para "${eventName}"`);
         }
       }, 1000);
@@ -160,8 +166,23 @@ export class AnalyticsService {
    * Capture UTMs from URL or sessionStorage to preserve session attribution
    */
   private initUtms(): void {
-    this.originalReferrer = document.referrer || 'direct';
-    this.landingPage = window.location.href;
+    let referrer = 'direct';
+    if (document.referrer) {
+      try {
+        const refUrl = new URL(document.referrer);
+        referrer = refUrl.origin;
+      } catch (e) {
+        referrer = 'direct';
+      }
+    }
+    this.originalReferrer = referrer;
+
+    try {
+      const currentUrl = new URL(window.location.href);
+      this.landingPage = currentUrl.origin + currentUrl.pathname;
+    } catch (e) {
+      this.landingPage = window.location.origin + window.location.pathname;
+    }
 
     const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
     const urlParams = new URLSearchParams(window.location.search);
@@ -272,7 +293,9 @@ export class AnalyticsService {
         const isCvDownload = href.toLowerCase().includes('cv') || href.toLowerCase().includes('resume') || href.endsWith('.pdf') || interactiveElement.hasAttribute('download');
 
         if (isCvDownload) {
-          console.log(`[Analytics Click] Identificado download de CV: href="${href}"`);
+          if (isDevMode()) {
+            console.log(`[Analytics Click] Identificado download de CV: href="${href}"`);
+          }
           this.track('cv_download', {
             label: textLabel || 'Curriculum Vitae',
             destination: href,
@@ -284,7 +307,9 @@ export class AnalyticsService {
         // 2. Semantic Check: GitHub Click
         const isGitHub = href.includes('github.com');
         if (isGitHub) {
-          console.log(`[Analytics Click] Identificado clique no GitHub: href="${href}"`);
+          if (isDevMode()) {
+            console.log(`[Analytics Click] Identificado clique no GitHub: href="${href}"`);
+          }
           this.track('github_click', {
             destination: href,
             label: textLabel || 'GitHub Profile',
@@ -296,7 +321,9 @@ export class AnalyticsService {
         // 3. Semantic Check: LinkedIn Click
         const isLinkedIn = href.includes('linkedin.com');
         if (isLinkedIn) {
-          console.log(`[Analytics Click] Identificado clique no LinkedIn: href="${href}"`);
+          if (isDevMode()) {
+            console.log(`[Analytics Click] Identificado clique no LinkedIn: href="${href}"`);
+          }
           this.track('linkedin_click', {
             destination: href,
             label: textLabel || 'LinkedIn Profile',
@@ -308,9 +335,10 @@ export class AnalyticsService {
         // 4. Semantic Check: Email Click
         const isEmail = href.startsWith('mailto:');
         if (isEmail) {
-          console.log(`[Analytics Click] Identificado clique em Email mailto: href="${href}"`);
+          if (isDevMode()) {
+            console.log(`[Analytics Click] Identificado clique em Email`);
+          }
           this.track('email_click', {
-            destination: href,
             label: textLabel || 'Contact Email',
             source_section: sectionName
           });

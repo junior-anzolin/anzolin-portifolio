@@ -26,7 +26,17 @@ async function syncMediumArticles() {
       throw new Error(`Resposta HTTP inválida: ${response.status} ${response.statusText}`);
     }
 
+    // Hardening: Limite razoável para o tamanho máximo da resposta (10MB)
+    const MAX_RESPONSE_SIZE = 10 * 1024 * 1024;
+    const contentLength = response.headers.get('content-length');
+    if (contentLength && parseInt(contentLength, 10) > MAX_RESPONSE_SIZE) {
+      throw new Error('O tamanho da resposta excede o limite máximo permitido (10MB).');
+    }
+
     const xmlText = await response.text();
+    if (xmlText.length > MAX_RESPONSE_SIZE) {
+      throw new Error('O tamanho da resposta excede o limite máximo permitido (10MB).');
+    }
 
     // Configuração robusta do fast-xml-parser
     const parser = new XMLParser({
@@ -43,7 +53,8 @@ async function syncMediumArticles() {
     }
 
     // Normaliza para array caso o Medium retorne apenas 1 item
-    const rawArticles = Array.isArray(items) ? items : [items];
+    // Hardening: limita razoavelmente a quantidade de artigos processados a no máximo 20
+    const rawArticles = (Array.isArray(items) ? items : [items]).slice(0, 20);
     const articles = [];
 
     for (const item of rawArticles) {
@@ -60,11 +71,21 @@ async function syncMediumArticles() {
       }
 
       // Extrai imagem de destaque (primeiro img src contido no post HTML)
+      // Hardening: validar e garantir que imagens externas usem https quando aplicável
       let imageUrl = '';
       const imgRegex = /<img[^>]+src=["']([^"']+)["']/i;
       const imgMatch = imgRegex.exec(contentEncoded);
       if (imgMatch) {
-        imageUrl = imgMatch[1];
+        let potentialUrl = imgMatch[1].trim();
+        if (potentialUrl.startsWith('//')) {
+          potentialUrl = 'https:' + potentialUrl;
+        } else if (potentialUrl.startsWith('http://')) {
+          potentialUrl = potentialUrl.replace(/^http:\/\//i, 'https://');
+        }
+
+        if (potentialUrl.startsWith('https://')) {
+          imageUrl = potentialUrl;
+        }
       }
 
       // Extrai texto limpo para o excerpt (removendo tags HTML e CDATA)

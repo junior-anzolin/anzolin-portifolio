@@ -12,9 +12,10 @@ permissions:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-  AWS_REGION: us-east-2
-  S3_BUCKET: anzolin.dev.br-424999961344-us-east-2-an
-  CLOUDFRONT_DISTRIBUTION_ID: EDI2RYOVGN5PD
+  AWS_REGION: ${{ vars.AWS_REGION }}
+  S3_BUCKET: ${{ vars.S3_BUCKET }}
+  CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
+  AWS_ROLE_ARN: ${{ vars.AWS_ROLE_ARN }}
 
 jobs:
   build:
@@ -64,7 +65,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
-          role-to-assume: arn:aws:iam::424999961344:role/Github-Actions-jr-portifolio
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy to S3
@@ -85,7 +86,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
-          role-to-assume: arn:aws:iam::424999961344:role/Github-Actions-jr-portifolio
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Invalidate CloudFront
