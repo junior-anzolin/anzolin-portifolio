@@ -97,6 +97,27 @@ export const PT_BR = {
           'Primeiro projeto exploratório pessoal desenvolvido para consolidação de práticas com tecnologia Flutter.',
         url: 'https://github.com/junior-anzolin/flutter-piloto-drinks',
       },
+      bankingApiRest: {
+        name: 'API Bancária — REST & AWS',
+        domain: 'BACKEND / ARCHITECTURE',
+        description:
+          'Projeto técnico de uma API bancária desenvolvida em 2021, com PostgreSQL, Docker, CI/CD, AWS e documentação das decisões de arquitetura e modelagem.',
+        url: 'https://github.com/junior-anzolin/desafio-dev-api-rest',
+      },
+      wsFrontEndChallenge: {
+        name: 'Desafio Frontend — Wealth Systems / TOTVS',
+        domain: 'FRONTEND / REACT',
+        description:
+          'Desafio técnico desenvolvido em React como parte de um processo seletivo, com foco em componentização, filtros, busca e experiência de navegação.',
+        url: 'https://github.com/junior-anzolin/ws-frontend-challenge',
+      },
+      permissionStructure: {
+        name: 'Estrutura de Permissões — Angular & NestJS',
+        domain: 'FULLSTACK / SECURITY',
+        description:
+          'Implementação de uma estrutura de permissões com Angular e NestJS, criada para demonstrar controle de acesso por usuários, grupos e permissões.',
+        url: 'https://github.com/junior-anzolin/permissions-structure',
+      },
     },
   },
   articles: {
@@ -498,6 +519,27 @@ export const EN_US: typeof PT_BR = {
         description:
           'First exploratory personal project developed to consolidate mobile practices using Flutter.',
         url: 'https://github.com/junior-anzolin/flutter-piloto-drinks',
+      },
+      bankingApiRest: {
+        name: 'Banking API — REST & AWS',
+        domain: 'BACKEND / ARCHITECTURE',
+        description:
+          'Technical banking API project developed in 2021, using PostgreSQL, Docker, CI/CD, AWS, and detailed documentation of architectural and data modeling decisions.',
+        url: 'https://github.com/junior-anzolin/desafio-dev-api-rest',
+      },
+      wsFrontEndChallenge: {
+        name: 'Wealth Systems / TOTVS Frontend Challenge',
+        domain: 'FRONTEND / REACT',
+        description:
+          'Technical challenge built with React as part of a hiring process, focused on componentization, filtering, search, and navigation experience.',
+        url: 'https://github.com/junior-anzolin/ws-frontend-challenge',
+      },
+      permissionStructure: {
+        name: 'Permissions Structure — Angular & NestJS',
+        domain: 'FULLSTACK / SECURITY',
+        description:
+          'Implementation of a permissions structure with Angular and NestJS, demonstrating access control based on users, groups, and permissions.',
+        url: 'https://github.com/junior-anzolin/permissions-structure',
       },
     },
   },
