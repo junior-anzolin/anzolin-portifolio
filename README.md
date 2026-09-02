@@ -17,12 +17,12 @@
 Este projeto tem como objetivo apresentar minha trajetória profissional
 de forma centralizada, reunindo:
 
--   experiência profissional;
--   projetos e produtos relevantes;
--   explorações técnicas;
--   conhecimentos e tecnologias;
--   formação acadêmica;
--   artigos e outros trabalhos técnicos.
+- experiência profissional;
+- projetos e produtos relevantes;
+- explorações técnicas;
+- conhecimentos e tecnologias;
+- formação acadêmica;
+- artigos e outros trabalhos técnicos.
 
 Além de funcionar como portfólio, o projeto também serve como um espaço
 para experimentar tecnologias e práticas de desenvolvimento utilizadas
@@ -75,11 +75,11 @@ O projeto também utiliza Angular SSR para renderização no servidor.
 
 ## 🛠️ Stack
 
--   **Angular**
--   **Angular SSR**
--   **TypeScript**
--   **SCSS**
--   **PNPM**
+- **Angular**
+- **Angular SSR**
+- **TypeScript**
+- **SCSS**
+- **PNPM**
 
 ------------------------------------------------------------------------
 
@@ -90,14 +90,14 @@ de utilização e interação.
 
 Entre os eventos acompanhados estão:
 
--   visualizações de páginas;
--   navegação;
--   UTMs e origem da visita;
--   profundidade de scroll;
--   visualização de seções;
--   abertura de projetos;
--   cliques em links e CTAs;
--   engajamento com a página.
+- visualizações de páginas;
+- navegação;
+- UTMs e origem da visita;
+- profundidade de scroll;
+- visualização de seções;
+- abertura de projetos;
+- cliques em links e CTAs;
+- engajamento com a página.
 
 O tracking é voltado à análise de utilização do portfólio e não utiliza
 gravação de tela ou rastreamento contínuo do movimento do mouse.
@@ -114,16 +114,14 @@ Para executá-los localmente:
 pnpm test
 ```
 
-Atualmente, os testes não fazem parte da execução do pipeline de CI/CD.
-
 ------------------------------------------------------------------------
 
 ## 🚀 Desenvolvimento
 
 ### Pré-requisitos
 
--   Node.js
--   PNPM
+- Node.js
+- PNPM
 
 ### Instalação
 
@@ -207,12 +205,12 @@ skills.
 
 It brings together:
 
--   professional experience;
--   relevant projects and products;
--   technical explorations;
--   technologies and skills;
--   academic background;
--   articles and other technical work.
+- professional experience;
+- relevant projects and products;
+- technical explorations;
+- technologies and skills;
+- academic background;
+- articles and other technical work.
 
 The project also serves as a space to experiment with technologies and
 development practices used in my professional work.
@@ -262,11 +260,11 @@ The project also uses Angular SSR for server-side rendering.
 
 ## 🛠️ Stack
 
--   **Angular**
--   **Angular SSR**
--   **TypeScript**
--   **SCSS**
--   **PNPM**
+- **Angular**
+- **Angular SSR**
+- **TypeScript**
+- **SCSS**
+- **PNPM**
 
 ------------------------------------------------------------------------
 
@@ -277,14 +275,14 @@ interaction metrics.
 
 Tracked events include:
 
--   page views;
--   navigation;
--   UTM parameters and visit origin;
--   scroll depth;
--   section visibility;
--   project interactions;
--   link and CTA clicks;
--   page engagement.
+- page views;
+- navigation;
+- UTM parameters and visit origin;
+- scroll depth;
+- section visibility;
+- project interactions;
+- link and CTA clicks;
+- page engagement.
 
 Tracking is focused on portfolio usage and does not include screen
 recording or continuous mouse movement tracking.
@@ -301,16 +299,14 @@ To run them locally:
 pnpm test
 ```
 
-The tests are currently not part of the CI/CD pipeline execution.
-
 ------------------------------------------------------------------------
 
 ## 🚀 Development
 
 ### Requirements
 
--   Node.js
--   PNPM
+- Node.js
+- PNPM
 
 ### Installation
 
