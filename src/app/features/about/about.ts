@@ -44,6 +44,7 @@ export class AboutComponent implements OnInit {
 
   // Lista estruturada de competências técnicas (Skills)
   protected readonly skillGroups = computed(() => {
+    // TODO: add coffee support
     const sc = this.t().about.skillsCategories;
 
     return [

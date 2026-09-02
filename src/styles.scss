@@ -37,6 +37,12 @@
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.25s ease;
+
+  /* MatSnackBar MDC Tokens (Angular Material 21) */
+  --mat-snack-bar-container-color: var(--surface-card);
+  --mat-snack-bar-supporting-text-color: var(--text-primary);
+  --mat-snack-bar-button-color: var(--accent-primary);
+  --mat-snack-bar-container-shape: var(--radius-md);
 }
 
 /* Material configurations & Overrides */

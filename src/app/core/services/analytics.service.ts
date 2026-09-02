@@ -1,6 +1,6 @@
-import { Injectable, PLATFORM_ID, inject, isDevMode } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { Router, NavigationEnd } from '@angular/router';
+import { Injectable, PLATFORM_ID, inject, isDevMode } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 export type UmamiEventName =
@@ -18,6 +18,7 @@ export type UmamiEventName =
   | 'scroll_depth'
   | 'section_view'
   | 'page_engagement'
+  | 'easter_egg'
   | 'element_click';
 
 export interface UmamiPayload {
@@ -37,7 +38,7 @@ declare global {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AnalyticsService {
   private readonly platformId = inject(PLATFORM_ID);
@@ -83,14 +84,14 @@ export class AnalyticsService {
       ...this.utmParams,
       original_referrer: this.originalReferrer,
       landing_page: this.landingPage,
-      ...data
+      ...data,
     };
 
     const umami = window.umami;
     if (isDevMode()) {
       console.log(`[Analytics] Enviando evento ao Umami: "${eventName}"`, {
         payload,
-        umamiExists: !!umami
+        umamiExists: !!umami,
       });
     }
 
@@ -98,20 +99,24 @@ export class AnalyticsService {
       umami.track(eventName, payload);
     } else {
       if (isDevMode()) {
-        console.warn(`[Analytics] window.umami não encontrado para o evento "${eventName}". Tentando agendar envio...`);
+        console.warn(
+          `[Analytics] window.umami não encontrado para o evento "${eventName}". Tentando agendar envio...`,
+        );
       }
       // Fallback: wait and try again once
       setTimeout(() => {
         const delayedUmami = window.umami;
         if (isDevMode()) {
           console.log(`[Analytics] Tentativa tardia de envio para "${eventName}"`, {
-            umamiExists: !!delayedUmami
+            umamiExists: !!delayedUmami,
           });
         }
         if (delayedUmami) {
           delayedUmami.track(eventName, payload);
         } else if (isDevMode()) {
-          console.error(`[Analytics] Falha crítica: window.umami não disponível após 1s para "${eventName}"`);
+          console.error(
+            `[Analytics] Falha crítica: window.umami não disponível após 1s para "${eventName}"`,
+          );
         }
       }, 1000);
     }
@@ -130,7 +135,7 @@ export class AnalyticsService {
         url: this.router.url,
         referrer: this.originalReferrer || props['referrer'],
         ...this.utmParams,
-        landing_page: this.landingPage
+        landing_page: this.landingPage,
       }));
     } else {
       setTimeout(() => {
@@ -140,7 +145,7 @@ export class AnalyticsService {
             url: this.router.url,
             referrer: this.originalReferrer || props['referrer'],
             ...this.utmParams,
-            landing_page: this.landingPage
+            landing_page: this.landingPage,
           }));
         }
       }, 1000);
@@ -272,11 +277,17 @@ export class AnalyticsService {
         }
 
         const tag = interactiveElement.tagName.toLowerCase();
-        const textLabel = (interactiveElement.textContent || interactiveElement.getAttribute('aria-label') || '').trim();
+        const textLabel = (
+          interactiveElement.textContent ||
+          interactiveElement.getAttribute('aria-label') ||
+          ''
+        ).trim();
         const elementId = interactiveElement.id || undefined;
 
         // Find current section name if available
-        const sectionContainer = interactiveElement.closest('section, footer, header, .about-section') as HTMLElement | null;
+        const sectionContainer = interactiveElement.closest(
+          'section, footer, header, .about-section',
+        ) as HTMLElement | null;
         let sectionName = 'body';
         if (sectionContainer) {
           sectionName = sectionContainer.className || sectionContainer.tagName.toLowerCase();
@@ -290,7 +301,11 @@ export class AnalyticsService {
 
         // 1. Semantic Check: Download of CV
         const href = interactiveElement.getAttribute('href') || '';
-        const isCvDownload = href.toLowerCase().includes('cv') || href.toLowerCase().includes('resume') || href.endsWith('.pdf') || interactiveElement.hasAttribute('download');
+        const isCvDownload =
+          href.toLowerCase().includes('cv') ||
+          href.toLowerCase().includes('resume') ||
+          href.endsWith('.pdf') ||
+          interactiveElement.hasAttribute('download');
 
         if (isCvDownload) {
           if (isDevMode()) {
@@ -299,7 +314,7 @@ export class AnalyticsService {
           this.track('cv_download', {
             label: textLabel || 'Curriculum Vitae',
             destination: href,
-            source_section: sectionName
+            source_section: sectionName,
           });
           return;
         }
@@ -313,7 +328,7 @@ export class AnalyticsService {
           this.track('github_click', {
             destination: href,
             label: textLabel || 'GitHub Profile',
-            source_section: sectionName
+            source_section: sectionName,
           });
           return;
         }
@@ -327,7 +342,7 @@ export class AnalyticsService {
           this.track('linkedin_click', {
             destination: href,
             label: textLabel || 'LinkedIn Profile',
-            source_section: sectionName
+            source_section: sectionName,
           });
           return;
         }
@@ -340,18 +355,20 @@ export class AnalyticsService {
           }
           this.track('email_click', {
             label: textLabel || 'Contact Email',
-            source_section: sectionName
+            source_section: sectionName,
           });
           return;
         }
 
         // 5. Semantic Check: Navigation / Route click
-        const hasRouterLink = interactiveElement.hasAttribute('routerLink') || interactiveElement.hasAttribute('ng-reflect-router-link');
+        const hasRouterLink =
+          interactiveElement.hasAttribute('routerLink') ||
+          interactiveElement.hasAttribute('ng-reflect-router-link');
         if (hasRouterLink || href.startsWith('/')) {
           this.track('navigation_click', {
             destination: href || interactiveElement.getAttribute('routerLink') || '',
             label: textLabel,
-            source_section: sectionName
+            source_section: sectionName,
           });
           return;
         }
@@ -368,11 +385,11 @@ export class AnalyticsService {
             x: event.clientX,
             y: event.clientY,
             viewport_width: window.innerWidth,
-            viewport_height: window.innerHeight
+            viewport_height: window.innerHeight,
           });
         }
       },
-      { passive: true }
+      { passive: true },
     );
   }
 
@@ -393,7 +410,7 @@ export class AnalyticsService {
           isScrolling = true;
         }
       },
-      { passive: true }
+      { passive: true },
     );
   }
 
@@ -410,7 +427,7 @@ export class AnalyticsService {
         this.trackedScrollDepths.add(threshold);
         this.track('scroll_depth', {
           depth: `${threshold}%`,
-          url: this.router.url
+          url: this.router.url,
         });
       }
     });
@@ -445,15 +462,18 @@ export class AnalyticsService {
       { label: '30-60s', seconds: 60 },
       { label: '1-3m', seconds: 180 },
       { label: '3-5m', seconds: 300 },
-      { label: '5m+', seconds: 600 }
+      { label: '5m+', seconds: 600 },
     ];
 
     buckets.forEach((bucket) => {
-      if (this.activeTimeSeconds >= bucket.seconds && !this.trackedEngagementBuckets.has(bucket.label)) {
+      if (
+        this.activeTimeSeconds >= bucket.seconds &&
+        !this.trackedEngagementBuckets.has(bucket.label)
+      ) {
         this.trackedEngagementBuckets.add(bucket.label);
         this.track('page_engagement', {
           duration_bucket: bucket.label,
-          url: this.router.url
+          url: this.router.url,
         });
       }
     });
@@ -504,7 +524,7 @@ export class AnalyticsService {
               this.trackedSections.add(name);
               this.track('section_view', {
                 section: name,
-                url: this.router.url
+                url: this.router.url,
               });
             }
           }
@@ -512,8 +532,8 @@ export class AnalyticsService {
       },
       {
         threshold: 0.25, // Element is 25% visible
-        rootMargin: '0px'
-      }
+        rootMargin: '0px',
+      },
     );
 
     elementsToObserve.forEach(({ name, element }) => {

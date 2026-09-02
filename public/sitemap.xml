@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Se você está lendo isso manualmente:
+
+  parabéns, esta com tempo livre, hein... 👀
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://anzolin.dev.br/</loc>
+  </url>
+
+  <url>
+    <loc>https://anzolin.dev.br/projects</loc>
+  </url>
+
+  <url>
+    <loc>https://anzolin.dev.br/articles</loc>
+  </url>
+
+  <url>
+    <loc>https://anzolin.dev.br/about</loc>
+  </url>
+
+</urlset>

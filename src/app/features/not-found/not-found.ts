@@ -11,6 +11,7 @@ import { LanguageService } from '../../core/services/language.service';
       <span class="material-symbols-outlined icon">error</span>
       <h1 class="title">{{ t().notFound.title }}</h1>
       <p class="message">{{ t().notFound.message }}</p>
+      <p class="easter-egg">{{ t().notFound.easterEgg }}</p>
       <a routerLink="/" class="back-button">
         <span class="material-symbols-outlined">arrow_back</span>
         {{ t().notFound.backToHome }}

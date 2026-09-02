@@ -1,4 +1,17 @@
 export const PT_BR = {
+  easterEggs: {
+    console: `
+👀 Você abriu o DevTools.
+
+Isso conta como code review?
+
+Se encontrou algum bug, abre uma issue. 🐛
+
+🔗 https://github.com/junior-anzolin
+  `,
+    konami: 'Konami Code detectado! +30 HP · +50 XP · +0 salário 🎮',
+    konamiClose: 'Fechar',
+  },
   header: {
     logo: 'EAF.',
     home: 'Início',
@@ -12,7 +25,7 @@ export const PT_BR = {
   footer: {
     description:
       'Tech Lead e Engenheiro de Software Sênior Full Stack focado na construção de produtos escaláveis e de alta qualidade.',
-    allRightsReserved: 'Todos os direitos reservados.',
+    allRightsReserved: 'Não é um bug. É uma feature. 🐛',
     contact: 'Contato',
     navigation: 'Navegação',
     social: 'Redes Sociais',
@@ -137,6 +150,7 @@ export const PT_BR = {
       'Experiência hands-on em arquitetura de software, sistemas distribuídos, integrações, processamento assíncrono, cloud e evolução de sistemas legados. Atuação em liderança técnica de equipes, mentoria, code review e direcionamento arquitetural, mantendo participação ativa no desenvolvimento.',
     introText3:
       'Busco atuar como Tech Lead em ambientes nos quais possa combinar execução técnica, visão arquitetural e desenvolvimento de pessoas, contribuindo para decisões sustentáveis e alinhadas às necessidades do produto e do negócio.',
+    introText4: '🚀 Ainda em desenvolvimento. Deploy contínuo desde 1998.',
 
     positioningHeading: 'Perfil Profissional',
     positioningText:
@@ -412,10 +426,24 @@ export const PT_BR = {
     title: '404 - Página Não Encontrada',
     message: 'A página que você está tentando acessar não existe.',
     backToHome: 'Voltar para o início',
+    easterEgg: 'Essa página entrou em produção antes de estar pronta. 🐛',
   },
 };
 
 export const EN_US: typeof PT_BR = {
+  easterEggs: {
+    console: `
+👀 You opened the DevTools.
+
+Does this count as a code review?
+
+If you found a bug, open an issue. 🐛
+
+🔗 https://github.com/junior-anzolin
+  `,
+    konami: 'Konami Code detected! +30 HP · +50 XP · +0 salary 🎮',
+    konamiClose: 'Close',
+  },
   header: {
     logo: 'EAF.',
     home: 'Home',
@@ -429,7 +457,7 @@ export const EN_US: typeof PT_BR = {
   footer: {
     description:
       'Tech Lead and Senior Full Stack Software Engineer focused on building scalable, high-quality products.',
-    allRightsReserved: 'All rights reserved.',
+    allRightsReserved: "It's not a bug. It's a feature. 🐛",
     contact: 'Contact',
     navigation: 'Navigation',
     social: 'Social Media',
@@ -560,6 +588,7 @@ export const EN_US: typeof PT_BR = {
       'Hands-on experience in software architecture, distributed systems, integrations, asynchronous processing, cloud, and legacy systems evolution. Experience in technical leadership of teams, mentoring, code reviews, and architectural guidance, maintaining active participation in development.',
     introText3:
       'I seek to act as a Tech Lead in environments where I can combine technical execution, architectural vision, and people development, contributing to sustainable decisions aligned with product and business needs.',
+    introText4: '🚀 Still in development. Continuous deployment since 1998.',
 
     positioningHeading: 'Professional Profile',
     positioningText:
@@ -834,7 +863,8 @@ export const EN_US: typeof PT_BR = {
   notFound: {
     title: '404 - Page Not Found',
     message: 'The page you are trying to access does not exist.',
-    backToHome: 'Go back home',
+    backToHome: 'Back to home',
+    easterEgg: 'This page went to production before it was ready. 🐛',
   },
 };
 
